@@ -1,0 +1,26 @@
+# Node.js and Vue.js app under the ui folder using NPM
+/client/.env.production.local
+.env
+node_modules
+
+/client/node_modules/
+/client/dist/
+/client/build/
+/client/.env
+/client/.env.local
+/client/.env.development.local
+/client/.env.test.local
+
+
+/client/*_module/dist
+
+# JetBrains PyCharm and WebStorm project files
+/.idea/
+/*.iml
+
+# General
+.DS_Store
+Thumbs.db
+.vscode/
+*.log
+
