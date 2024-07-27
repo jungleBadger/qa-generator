@@ -23,4 +23,5 @@ EXPOSE 4025
 EXPOSE 5173
 
 # Start the application
-CMD ["npm", "run", "start:dev"]
+CMD ["sh", "docker_start.sh"]
+
