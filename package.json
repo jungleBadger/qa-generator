@@ -4,15 +4,19 @@
   "main": "start.js",
   "scripts": {
     "start": "node start.js",
-    "start:dev": "npx nodemon --config nodemon.json",
+    "livereload:server": "npx nodemon --config nodemon.json",
+    "build:client": "vite build --config client/user_module/vite.config.mjs --mode production",
+    "livereload:client": "vite serve --config client/user_module/vite.config.mjs --host",
+    "start:dev": "npm run build:client && concurrently \"npm run livereload:server\" \"npm run livereload:client\"",
     "lint": "npx eslint --fix --config eslint.config.mjs",
     "format": "prettier --write . --config .prettierrc.config.mjs",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "serve": "vite serve --config client/user_module/vite.config.mjs",
-    "build": "vite build --config client/user_module/vite.config.mjs --mode production"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "authors": ["dcerag"],
-  "license": "ISC",
+  "authors": [
+    "jungleBadger",
+    "alexiabalionis"
+  ],
+  "license": "MIT",
   "description": "",
   "dependencies": {
     "@fastify/static": "^7.0.4",
@@ -24,6 +28,7 @@
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.0.5",
+    "concurrently": "^8.2.2",
     "eslint": "^9.5.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.1.3",
