@@ -8,8 +8,8 @@ services:
       dockerfile: Dockerfile
     env_file: .env
     ports:
-      - "${PORT:-4025}:${PORT:-4025}"
-      - "${PORT:-5173}:${PORT:-5173}"
+      - "${APP_PORT:-4025}:${APP_PORT:-4025}"
+      - "${VITE_PORT:-5173}:${VITE_PORT:-5173}"
     volumes:
       - .:/app
       - /app/node_modules # To prevent conflicts between host and container node_modules
