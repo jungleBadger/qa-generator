@@ -1,7 +1,18 @@
-### Dependencies
+## Dependencies
 
 - Node v20+
--
+
+## Environment variables
+
+Sample environment variables:
+
+```bash
+APP_HOST=127.0.0.1
+APP_PORT=4025
+DEBUG=true
+```
+
+## Building and running the application
 
 ### Installing dependencies
 
@@ -21,7 +32,7 @@ npm run build
 npm start
 ```
 
-### Running dev build with server live reload
+### Running dev build with UI live reload
 
 ```bash
 npm run serve
@@ -32,3 +43,6 @@ npm run serve
 ```bash
 npm run lint
 ```
+
+
+
