@@ -1,0 +1,17 @@
+version: "3.8"
+
+services:
+  app:
+    container_name: qa_generator_app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    env_file: .env
+    ports:
+      - "${PORT:-4025}:${PORT:-4025}"
+      - "${PORT:-5173}:${PORT:-5173}"
+    volumes:
+      - .:/app
+      - /app/node_modules # To prevent conflicts between host and container node_modules
+    environment:
+      - CHOKIDAR_USEPOLLING=true # This is to enable polling for file changes, useful for certain Docker environments
