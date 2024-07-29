@@ -1,12 +1,18 @@
 import Header from "./components/Header";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Home from "./pages/Home";
+import Create from "./pages/Create";
 
 function App() {
   return (
     <>
       <Header />
-      <div className="flex">
-        <div className="text-3xl font-bold underline">oi</div>
-      </div>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/criar" element={<Create />} />
+        </Routes>
+      </Router>
     </>
   );
 }

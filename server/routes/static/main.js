@@ -9,12 +9,12 @@ module.exports = {
 
     app.register(fastifyStatic, {
       root: path.join(__dirname, "..", "..", "..", "/client/user_module/dist"),
-      prefix: "/app", // optional: default '/'
-      decorateReply: true // Do not decorate the reply interface
+      prefix: "/", // optional: default '/'
+      decorateReply: true, // Do not decorate the reply interface
     });
 
     // Serve the index.html file
-    app.get("/app", (request, reply) => {
+    app.get("/", (request, reply) => {
       reply.sendFile(
         "index.html",
         path.join(__dirname, "..", "..", "..", "/client/user_module/dist")
@@ -22,5 +22,5 @@ module.exports = {
     });
 
     return app;
-  }
+  },
 };

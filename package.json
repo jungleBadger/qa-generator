@@ -5,7 +5,7 @@
   "scripts": {
     "start": "node start.js",
     "reload:tailwind": "npx tailwindcss -i client/user_module/src/index.css -o client/user_module/src/output.css --watch",
-    "start:dev": "npm run build:client && concurrently \"npm run livereload:server\" \"npm run reload:tailwind\" \"npm run livereload:client\"",
+    "start:dev": "npm run build:client && concurrently \"npm run livereload:server\" \"npm run livereload:client\"",
     "livereload:server": "npx nodemon --config nodemon.json",
     "build:client": "vite build --config client/user_module/vite.config.mjs --mode production",
     "livereload:client": "vite serve --config client/user_module/vite.config.mjs --host",
@@ -30,6 +30,7 @@
     "pino-pretty": "^11.2.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-router-dom": "^6.25.1",
     "tiktoken": "^1.0.15",
     "uuid": "^10.0.0"
   },
