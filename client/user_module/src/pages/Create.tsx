@@ -15,7 +15,9 @@ function Create() {
     <div className="px-4">
       <h1 className="text-3xl font-bold">Criar estudos</h1>
       <p className="mt-4">
-        Aqui você pode criar perguntas a partir de um texto.
+        Envie ou cole o texto que você deseja estudar. Nosso sistema irá
+        transformar o conteúdo em perguntas e respostas para facilitar seu
+        aprendizado.
       </p>
       <div className="flex flex-col items-center py-4">
         <textarea

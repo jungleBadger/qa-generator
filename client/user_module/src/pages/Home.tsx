@@ -7,7 +7,8 @@ function Home() {
             Bem-vindo ao sistema de estudos
           </h1>
           <p className="mt-4">
-            Aqui você pode criar e visualizar material de estudos.
+            Transforme textos em perguntas e respostas para facilitar seu
+            aprendizado. Comece agora e melhore sua retenção de informações.
           </p>
         </div>
       </div>
