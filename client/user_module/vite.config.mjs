@@ -1,6 +1,7 @@
 import { defineConfig, loadEnv } from "vite";
 import react from "@vitejs/plugin-react";
 import tailwindcss from "tailwindcss";
+import autoprefixer from "autoprefixer";
 
 // https://vitejs.dev/config/
 
@@ -19,22 +20,25 @@ export default defineConfig(({ command, mode }) => {
     plugins: [react()],
     css: {
       postcss: {
-        plugins: [tailwindcss],
-      },
+        plugins: [
+          tailwindcss("./client/user_module/tailwind.config.js"),
+          autoprefixer
+        ]
+      }
     },
     define: {
-      __APP_ENV__: JSON.stringify(env.APP_ENV),
+      __APP_ENV__: JSON.stringify(env.APP_ENV)
     },
     root: "./client/user_module",
     base: "/",
     server: {
       port: VITE_PORT,
       proxy: {
-        "/api": `${API_APP_PROTOCOL}://${API_APP_HOST}:${API_APP_PORT}`,
+        "/api": `${API_APP_PROTOCOL}://${API_APP_HOST}:${API_APP_PORT}`
       },
       watch: {
-        usePolling: true,
-      },
-    },
+        usePolling: true
+      }
+    }
   };
 });
