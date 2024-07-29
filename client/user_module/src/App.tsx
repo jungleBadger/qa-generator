@@ -1,14 +1,12 @@
-import "./App.css";
+import Header from "./components/Header";
 
 function App() {
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank"></a>
-        <a href="https://react.dev" target="_blank"></a>
+      <Header />
+      <div className="flex">
+        <div className="text-3xl font-bold underline">oi</div>
       </div>
-      <h1>Vite + React</h1>
-      <p className="">OIOIOIOIOIOI</p>
     </>
   );
 }

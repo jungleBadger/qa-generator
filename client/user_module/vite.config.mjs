@@ -1,5 +1,6 @@
 import { defineConfig, loadEnv } from "vite";
 import react from "@vitejs/plugin-react";
+import tailwindcss from "tailwindcss";
 
 // https://vitejs.dev/config/
 
@@ -16,6 +17,11 @@ export default defineConfig(({ command, mode }) => {
   return {
     // vite config
     plugins: [react()],
+    css: {
+      postcss: {
+        plugins: [tailwindcss],
+      },
+    },
     define: {
       __APP_ENV__: JSON.stringify(env.APP_ENV),
     },
@@ -25,6 +31,9 @@ export default defineConfig(({ command, mode }) => {
       port: VITE_PORT,
       proxy: {
         "/api": `${API_APP_PROTOCOL}://${API_APP_HOST}:${API_APP_PORT}`,
+      },
+      watch: {
+        usePolling: true,
       },
     },
   };
