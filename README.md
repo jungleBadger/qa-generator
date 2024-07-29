@@ -11,11 +11,19 @@ APP_HOST=0.0.0.0
 APP_PORT=4025
 VITE_PORT=5173
 DEBUG=true
+CHUNK_SIZE=3000
+OVERLAP_SIZE=200
+
+OPENAI_API_KEY=
+
+MONGODB_URI=
+MONGODB_DB=
 ```
 
 ## Building and running the application
 
 ### Using Docker
+
 ```bash
 docker-compose up --build
 ```
