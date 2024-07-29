@@ -2,18 +2,20 @@
 
 const fastify = require("fastify");
 
-function createApp({ logger }) {
-  const app = fastify({ logger });
+const openaiConfigs = require("./configs/openai");
+const mongodbConfigs = require("./configs/mongodb");
+const routes = require("./routes");
 
-  // Define routes
-  app.get("/", async (request, reply) => {
-    return { hello: "world" };
+async function createApp(logger, mongoDB, inference) {
+
+  const app = fastify({
+    logger
   });
 
-  // Define routes
-  app.get("/api", async (request, reply) => {
-    return { hello: "world" };
-  });
+  await mongoDB.connect(mongodbConfigs.uri, mongodbConfigs.db);
+  inference.connect(openaiConfigs.apiKey);
+
+  routes.init(app, mongoDB, inference);
 
   return app;
 }
