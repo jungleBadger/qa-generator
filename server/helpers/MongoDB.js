@@ -17,7 +17,7 @@ class MongoDB {
         this.client = new MongoClient(uri, {});
         await this.client.connect();
         this.db = this.client.db(dbName);
-        console.log('Connected to MongoDB');
+        console.log("Connected to MongoDB");
       })();
     }
 
@@ -38,7 +38,7 @@ class MongoDB {
   async insertOne(collectionName, document) {
     const collection = this.getCollection(collectionName);
     const result = await collection.insertOne(document);
-    return result ? result.insertedId : null
+    return result ? result.insertedId : null;
   }
 
   async findOne(collectionName, query) {

@@ -1,6 +1,5 @@
 "use strict";
 
-
 module.exports = {
   init: function (app, orchestrator) {
     app.log.info("Initializing API routes");

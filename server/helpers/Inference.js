@@ -5,7 +5,7 @@ const OpenAI = require("openai");
 const DEFAULT_MODEL = require("../configs/llmModel");
 
 class Inference {
-  constructor(inferenceModel= DEFAULT_MODEL) {
+  constructor(inferenceModel = DEFAULT_MODEL) {
     this.client = null;
     this.inferenceModel = inferenceModel;
   }
@@ -25,9 +25,7 @@ class Inference {
     console.log(completion.choices[0]);
 
     return completion;
-
   }
-
 }
 
 module.exports = Inference;

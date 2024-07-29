@@ -5,8 +5,8 @@ class GenerateQA {
     this.inference = inference;
   }
 
- async process(chunk) {
-      return [];
+  async process(chunk) {
+    return [];
   }
 }
 

@@ -11,10 +11,7 @@ class StoreChunkIntoMongo {
 
   async process(contentId, chunkObject) {
     const chunk = new Chunk(contentId, chunkObject);
-    const result = await this.mongoDB.insertOne(
-        this.collectionName,
-        chunk
-    );
+    const result = await this.mongoDB.insertOne(this.collectionName, chunk);
 
     return result ? chunk : null;
   }

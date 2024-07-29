@@ -7,7 +7,6 @@ const Orchestrator = require("../pipelines/Orchestrator");
 
 module.exports = {
   init: function (app, mongoDB, inference) {
-
     const orchestrator = new Orchestrator(app.log, mongoDB, inference);
 
     mainStaticRoutes.init(app);

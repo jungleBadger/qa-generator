@@ -6,7 +6,7 @@ class Content {
   constructor() {
     this._id = uuidv4();
     this.owner = "";
-    this.timestamp = new Date()
+    this.timestamp = new Date();
   }
 }
 

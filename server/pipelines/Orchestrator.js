@@ -18,11 +18,15 @@ class Orchestrator {
   }
 
   _logStart() {
-    this.logger.info(`Starting text processing orchestration for the content: ${this.contentObject._id}`);
+    this.logger.info(
+      `Starting text processing orchestration for the content: ${this.contentObject._id}`
+    );
   }
 
   _logEnd() {
-    this.logger.info(`Finishing text processing orchestration for the content: ${this.contentObject._id}`);
+    this.logger.info(
+      `Finishing text processing orchestration for the content: ${this.contentObject._id}`
+    );
   }
 
   process(documentText) {
@@ -38,23 +42,25 @@ class Orchestrator {
         this.contentObject = await this.registerContent.process();
         this._logStart();
 
-
         textSplitter.on("data", async (chunkObject) => {
           promises.push(
-              (async () => {
-                try {
-                  const [storedChunk, qaItems] = await Promise.all([
-                    this.storeChunkIntoMongo.process(this.contentObject._id, chunkObject),
-                    this.generateQA.process(chunkObject)
-                  ]);
+            (async () => {
+              try {
+                const [storedChunk, qaItems] = await Promise.all([
+                  this.storeChunkIntoMongo.process(
+                    this.contentObject._id,
+                    chunkObject
+                  ),
+                  this.generateQA.process(chunkObject)
+                ]);
 
-                  await this.storeQAItemsIntoMongo.process(qaItems);
+                await this.storeQAItemsIntoMongo.process(qaItems);
 
-                  return { chunk: storedChunk, qaItems };
-                } catch (e) {
-                  throw e;
-                }
-              })()
+                return { chunk: storedChunk, qaItems };
+              } catch (e) {
+                throw e;
+              }
+            })()
           );
         });
 
@@ -62,12 +68,10 @@ class Orchestrator {
           try {
             const result = await Promise.all(promises);
             this._logEnd();
-            resolve(
-                {
-                  "content": this.contentObject,
-                  "data": result
-                }
-            );
+            resolve({
+              content: this.contentObject,
+              data: result
+            });
           } catch (e) {
             reject(e);
           }
@@ -78,11 +82,9 @@ class Orchestrator {
         });
 
         textSplitter.process(documentText);
-
       } catch (err) {
         reject(err);
       }
-
     });
   }
 }

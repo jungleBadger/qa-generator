@@ -11,10 +11,7 @@ class RegisterContent {
 
   async process() {
     const content = new Content();
-    const result = await this.mongoDB.insertOne(
-        this.collectionName,
-        content
-    );
+    const result = await this.mongoDB.insertOne(this.collectionName, content);
 
     return result ? content : null;
   }
