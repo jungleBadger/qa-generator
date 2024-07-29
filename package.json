@@ -4,15 +4,19 @@
   "main": "start.js",
   "scripts": {
     "start": "node start.js",
+    "reload:tailwind": "npx tailwindcss -i client/user_module/src/index.css -o client/user_module/src/output.css --watch",
+    "start:dev": "npm run build:client && concurrently \"npm run livereload:server\" \"npm run livereload:client\"",
     "livereload:server": "npx nodemon --config nodemon.json",
     "build:client": "vite build --config client/user_module/vite.config.mjs --mode production",
     "livereload:client": "vite serve --config client/user_module/vite.config.mjs --host",
-    "start:dev": "npm run build:client && concurrently \"npm run livereload:server\" \"npm run livereload:client\"",
     "lint": "npx eslint --fix --config eslint.config.mjs",
     "format": "prettier --write . --config .prettierrc.config.mjs",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "authors": ["jungleBadger", "alexiabalionis"],
+  "authors": [
+    "jungleBadger",
+    "alexiabalionis"
+  ],
   "license": "MIT",
   "description": "",
   "dependencies": {
@@ -24,11 +28,18 @@
     "openai": "^4.53.2",
     "pino": "^9.2.0",
     "pino-pretty": "^11.2.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.25.1",
     "tiktoken": "^1.0.15",
     "uuid": "^10.0.0"
   },
   "devDependencies": {
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "@vitejs/plugin-react": "^4.3.1",
     "@vitejs/plugin-vue": "^5.0.5",
+    "autoprefixer": "^10.4.19",
     "concurrently": "^8.2.2",
     "eslint": "^9.5.0",
     "eslint-config-prettier": "^9.1.0",
@@ -36,8 +47,10 @@
     "eslint-plugin-vue": "^9.26.0",
     "globals": "^15.5.0",
     "nodemon": "^3.1.3",
+    "postcss": "^8.4.40",
     "prettier": "^3.3.2",
     "sass": "^1.77.5",
+    "tailwindcss": "^3.4.7",
     "vite": "^5.3.1"
   }
 }
