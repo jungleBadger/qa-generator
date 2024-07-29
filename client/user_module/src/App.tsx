@@ -5,7 +5,7 @@ import Create from "./pages/Create";
 
 function App() {
   return (
-    <>
+    <div className="bg-gradient-to-br from-slate-50 to-slate-200 h-full">
       <Header />
       <Router>
         <Routes>
@@ -13,7 +13,7 @@ function App() {
           <Route path="/criar" element={<Create />} />
         </Routes>
       </Router>
-    </>
+    </div>
   );
 }
 

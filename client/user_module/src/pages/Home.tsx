@@ -1,8 +1,8 @@
 function Home() {
   return (
     <div className="w-full flex flex-col justify-center items-center">
-      <div className="flex justify-center w-full">
-        <div className="w-2/3">
+      <div className="flex justify-center w-full pt-8">
+        <div className="px-14">
           <h1 className="text-3xl font-bold">Bem-vindo ao LearningFlash</h1>
           <p className="mt-4">
             Transforme textos em perguntas e respostas para facilitar seu
@@ -12,9 +12,9 @@ function Home() {
       </div>
       <a
         href="/criar"
-        className="mt-4 w-32 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        className="mt-4 bg-orange-600 hover:bg-orange-700 text-white font-semibold py-2 px-4 rounded"
       >
-        Criar estudo
+        Começar a estudar
       </a>
     </div>
   );
