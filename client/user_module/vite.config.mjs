@@ -1,5 +1,5 @@
 import { defineConfig, loadEnv } from "vite";
-import vue from "@vitejs/plugin-vue";
+import react from "@vitejs/plugin-react";
 
 // https://vitejs.dev/config/
 
@@ -15,17 +15,17 @@ export default defineConfig(({ command, mode }) => {
   const API_APP_PORT = process.env.APP_PORT || process.env.API_APP_PORT || 4025;
   return {
     // vite config
-    plugins: [vue()],
+    plugins: [react()],
     define: {
-      __APP_ENV__: JSON.stringify(env.APP_ENV)
+      __APP_ENV__: JSON.stringify(env.APP_ENV),
     },
     root: "./client/user_module",
     base: "/app",
     server: {
       port: VITE_PORT,
       proxy: {
-        "/api": `${API_APP_PROTOCOL}://${API_APP_HOST}:${API_APP_PORT}`
-      }
-    }
+        "/api": `${API_APP_PROTOCOL}://${API_APP_HOST}:${API_APP_PORT}`,
+      },
+    },
   };
 });

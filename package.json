@@ -12,7 +12,10 @@
     "format": "prettier --write . --config .prettierrc.config.mjs",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "authors": ["jungleBadger", "alexiabalionis"],
+  "authors": [
+    "jungleBadger",
+    "alexiabalionis"
+  ],
   "license": "MIT",
   "description": "",
   "dependencies": {
@@ -24,10 +27,15 @@
     "openai": "^4.53.2",
     "pino": "^9.2.0",
     "pino-pretty": "^11.2.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
     "tiktoken": "^1.0.15",
     "uuid": "^10.0.0"
   },
   "devDependencies": {
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "@vitejs/plugin-react": "^4.3.1",
     "@vitejs/plugin-vue": "^5.0.5",
     "concurrently": "^8.2.2",
     "eslint": "^9.5.0",
