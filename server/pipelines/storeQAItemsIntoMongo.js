@@ -1,7 +1,5 @@
 "use strict";
 
-const mongoClient = require("../helpers/mongodb");
-
 class storeQAItemsIntoMongo {
   constructor() {}
 
