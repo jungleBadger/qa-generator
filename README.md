@@ -1,8 +1,31 @@
-## Dependencies
+# QA Generator
 
-- Node v20+
+![GitHub repo size](https://img.shields.io/github/repo-size/jungleBadger/qa-generator)
+![GitHub contributors](https://img.shields.io/github/contributors/jungleBadger/qa-generator)
+![GitHub stars](https://img.shields.io/github/stars/jungleBadger/qa-generator?style=social)
+![GitHub forks](https://img.shields.io/github/forks/jungleBadger/qa-generator?style=social)
+![GitHub issues](https://img.shields.io/github/issues/jungleBadger/qa-generator)
+![GitHub license](https://img.shields.io/github/license/jungleBadger/qa-generator)
 
-## Environment variables
+## Overview
+
+QA Generator is an application designed to parse user input as raw text or document uploads, process the content, and generate Question-Answer (QA) pairs. This tool is useful for automating the creation of QA pairs from various types of documents.
+
+## Stack
+
+### Backend
+
+- **Node.js v20.16+**
+
+
+### Frontend
+- **React.js**: Frontend framework
+
+## Diagrams
+
+TBD
+
+## Environment Variables
 
 Sample environment variables:
 
@@ -20,7 +43,7 @@ MONGODB_URI=
 MONGODB_DB=
 ```
 
-## Building and running the application
+## Building and Running the Application
 
 ### Using Docker
 
@@ -28,22 +51,22 @@ MONGODB_DB=
 docker-compose up --build
 ```
 
-### Local run
+### Local Run
 
-#### Installing dependencies
+#### Installing Dependencies
 
 ```bash
 npm i
 ```
 
-#### Building and starting the app without Live Reload
+#### Building and Starting the App Without Live Reload
 
 ```bash
 npm run build:client
 npm start
 ```
 
-#### Building and starting dev app with Server and UI Live Reload
+#### Building and Starting Dev App with Server and UI Live Reload
 
 ```bash
 npm run start:dev
@@ -55,3 +78,17 @@ npm run start:dev
 npm run lint
 npm run format
 ```
+
+## Contributing
+
+Contributions are what make the open-source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## License
+
+Distributed under the MIT License. See `LICENSE` for more information.
