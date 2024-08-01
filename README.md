@@ -32,6 +32,7 @@ Sample environment variables:
 ```bash
 APP_HOST=0.0.0.0
 APP_PORT=4025
+APP_SECRET=<32-byte-string>
 VITE_PORT=5173
 DEBUG=true
 CHUNK_SIZE=3000
@@ -41,6 +42,9 @@ OPENAI_API_KEY=
 
 MONGODB_URI=
 MONGODB_DB=
+
+AUTH0_CLIENT_ID=
+AUTH0_CLIENT_SECRET=
 ```
 
 ## Building and Running the Application
