@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 const Flashcard = ({
   question,
-  answer,
+  answer
 }: {
   question: string;
   answer: string;

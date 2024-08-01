@@ -17,8 +17,8 @@ QA Generator is an application designed to parse user input as raw text or docum
 
 - **Node.js v20.16+**
 
-
 ### Frontend
+
 - **React.js**: Frontend framework
 
 ## Diagrams

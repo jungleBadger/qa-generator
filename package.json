@@ -13,10 +13,7 @@
     "format": "prettier --write . --config .prettierrc.config.mjs",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "authors": [
-    "jungleBadger",
-    "alexiabalionis"
-  ],
+  "authors": ["jungleBadger", "alexiabalionis"],
   "license": "MIT",
   "description": "",
   "dependencies": {

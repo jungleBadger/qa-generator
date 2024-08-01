@@ -10,7 +10,7 @@ module.exports = {
     app.register(fastifyStatic, {
       root: path.join(__dirname, "..", "..", "..", "/client/user_module/dist"),
       prefix: "/", // optional: default '/'
-      decorateReply: true, // Do not decorate the reply interface
+      decorateReply: true // Do not decorate the reply interface
     });
 
     // Serve the index.html file
@@ -22,5 +22,5 @@ module.exports = {
     });
 
     return app;
-  },
+  }
 };

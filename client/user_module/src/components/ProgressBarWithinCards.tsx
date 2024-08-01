@@ -1,6 +1,6 @@
 export const ProgressBarWithinCards = ({
   items,
-  currentIndex,
+  currentIndex
 }: {
   items: any[];
   currentIndex: number;

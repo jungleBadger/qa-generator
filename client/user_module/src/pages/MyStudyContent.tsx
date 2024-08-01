@@ -3,22 +3,22 @@ export const mockData = [
     id: 1,
     title: "React Mock",
     description: "React is a JavaScript library for building user interfaces.",
-    progress: 0.5,
+    progress: 0.5
   },
   {
     id: 2,
     title: "Node.js Mock",
     description:
       "Node.js is a JavaScript runtime built on Chrome's V8 JavaScript engine.",
-    progress: 0.3,
+    progress: 0.3
   },
   {
     id: 3,
     title: "Express Mock",
     description:
       "Express is a minimal and flexible Node.js web application framework.",
-    progress: 0.7,
-  },
+    progress: 0.7
+  }
 ];
 
 function MyStudyContent() {
