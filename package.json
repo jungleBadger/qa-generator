@@ -28,6 +28,7 @@
     "axios": "^1.7.2",
     "dotenv": "^16.4.5",
     "fastify": "^4.28.1",
+    "memorystore": "^1.6.7",
     "mongodb": "^6.8.0",
     "openai": "^4.53.2",
     "passport-auth0": "^1.4.4",
