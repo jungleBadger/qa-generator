@@ -19,17 +19,17 @@ class Orchestrator {
 
   _logStart() {
     this.logger.info(
-      `Starting text processing orchestration for the content: ${this.contentObject._id}`
+      `Started text processing orchestration for the content: ${this.contentObject._id}`
     );
   }
 
   _logEnd() {
     this.logger.info(
-      `Finishing text processing orchestration for the content: ${this.contentObject._id}`
+      `Finished text processing orchestration for the content: ${this.contentObject._id}`
     );
   }
 
-  process(documentText) {
+  process(documentText, documentOwner) {
     return new Promise(async (resolve, reject) => {
       if (!documentText) {
         return reject("Missing document text");
@@ -39,7 +39,7 @@ class Orchestrator {
         const textSplitter = new SplitTextIntoChunks();
         const promises = [];
 
-        this.contentObject = await this.registerContent.process();
+        this.contentObject = await this.registerContent.process(documentOwner);
         this._logStart();
 
         textSplitter.on("data", async (chunkObject) => {

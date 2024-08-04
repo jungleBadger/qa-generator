@@ -4,7 +4,7 @@ const fastifyStatic = require("@fastify/static");
 const path = require("path");
 
 module.exports = {
-  init: function (app) {
+  init: function (app, passport) {
     app.log.info("Initializing static routes");
 
     app.register(fastifyStatic, {

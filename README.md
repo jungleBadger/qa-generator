@@ -32,7 +32,7 @@ Sample environment variables:
 ```bash
 APP_HOST=0.0.0.0
 APP_PORT=4025
-APP_SECRET=<32-byte-string>
+APP_SECRET=<32-Byte Hexadecimal Key>
 VITE_PORT=5173
 DEBUG=true
 CHUNK_SIZE=3000
@@ -41,10 +41,11 @@ OVERLAP_SIZE=200
 OPENAI_API_KEY=
 
 MONGODB_URI=
-MONGODB_DB=
 
 AUTH0_CLIENT_ID=
 AUTH0_CLIENT_SECRET=
+AUTH0_CALLBACK_URL=/auth/callback
+AUTH0_DOMAIN=<domain>.us.auth0.com
 ```
 
 ## Building and Running the Application

@@ -1,64 +1,75 @@
-const { MongoClient } = require("mongodb");
+const mongoose = require("mongoose");
 
 class MongoDB {
   constructor() {
-    this.client = null;
-    this.db = null;
     this.connectionPromise = null;
+    this.models = {};
   }
 
-  async connect(uri, dbName) {
-    if (this.client && this.client.isConnected()) {
+  async connect(uri, options = {}) {
+    if (mongoose.connection.readyState === 1) {
       return;
     }
 
     if (!this.connectionPromise) {
-      this.connectionPromise = (async () => {
-        this.client = new MongoClient(uri, {});
-        await this.client.connect();
-        this.db = this.client.db(dbName);
-        console.log("Connected to MongoDB");
-      })();
+      this.connectionPromise = mongoose
+        .connect(uri, {
+          ...options
+        })
+        .then(() => {
+          console.log("Connected to MongoDB with Mongoose");
+        })
+        .catch((err) => {
+          console.error("Mongoose connection error:", err);
+          this.connectionPromise = null; // Reset promise on error
+        });
     }
 
     await this.connectionPromise;
   }
 
   async disconnect() {
-    if (this.client && this.client.isConnected()) {
-      await this.client.close();
-      console.log("Disconnected from MongoDB");
+    if (mongoose.connection.readyState === 1) {
+      await mongoose.disconnect();
+      console.log("Disconnected from MongoDB with Mongoose");
     }
   }
 
-  getCollection(collectionName) {
-    return this.db.collection(collectionName);
+  getModel(name, schemaDefinition) {
+    if (!this.models[name]) {
+      const schema = new mongoose.Schema(schemaDefinition, {
+        timestamps: true
+      });
+      this.models[name] = mongoose.model(name, schema);
+    }
+    return this.models[name];
   }
 
-  async insertOne(collectionName, document) {
-    const collection = this.getCollection(collectionName);
-    const result = await collection.insertOne(document);
-    return result ? result.insertedId : null;
+  async insertOne(modelName, schemaDefinition, document) {
+    const Model = this.getModel(modelName, schemaDefinition);
+    const newDocument = new Model(document);
+    const result = await newDocument.save();
+    return result._id;
   }
 
-  async findOne(collectionName, query) {
-    const collection = this.getCollection(collectionName);
-    return await collection.findOne(query);
+  async findOne(modelName, schemaDefinition, query) {
+    const Model = this.getModel(modelName, schemaDefinition);
+    return await Model.findOne(query).exec();
   }
 
-  async findMany(collectionName, query) {
-    const collection = this.getCollection(collectionName);
-    return await collection.find(query).toArray();
+  async findMany(modelName, schemaDefinition, query) {
+    const Model = this.getModel(modelName, schemaDefinition);
+    return await Model.find(query).exec();
   }
 
-  async updateOne(collectionName, query, update) {
-    const collection = this.getCollection(collectionName);
-    return await collection.updateOne(query, { $set: update });
+  async updateOne(modelName, schemaDefinition, query, update) {
+    const Model = this.getModel(modelName, schemaDefinition);
+    return await Model.updateOne(query, { $set: update }).exec();
   }
 
-  async deleteOne(collectionName, query) {
-    const collection = this.getCollection(collectionName);
-    return await collection.deleteOne(query);
+  async deleteOne(modelName, schemaDefinition, query) {
+    const Model = this.getModel(modelName, schemaDefinition);
+    return await Model.deleteOne(query).exec();
   }
 }
 

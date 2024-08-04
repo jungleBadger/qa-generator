@@ -1,16 +1,16 @@
 "use strict";
 
+const mainAuthRoutes = require("./auth/main");
 const mainStaticRoutes = require("./static/main");
 const mainAPIRoutes = require("./api/main");
 
-const Orchestrator = require("../pipelines/Orchestrator");
-
 module.exports = {
-  init: function (app, mongoDB, inference) {
+  init: async function (app, Orchestrator, passport, mongoDB, inference) {
     const orchestrator = new Orchestrator(app.log, mongoDB, inference);
 
-    mainStaticRoutes.init(app);
-    mainAPIRoutes.init(app, orchestrator);
+    mainAuthRoutes.init(app, passport);
+    mainStaticRoutes.init(app, passport);
+    mainAPIRoutes.init(app, passport, orchestrator);
 
     app.log.info("Routes initialized");
   }

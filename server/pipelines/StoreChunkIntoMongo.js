@@ -1,19 +1,30 @@
 "use strict";
 
 const Chunk = require("../models/Chunk");
-const DB_COLLECTION_NAME = "contentChunks";
 
 class StoreChunkIntoMongo {
   constructor(mongoDB) {
     this.mongoDB = mongoDB;
-    this.collectionName = DB_COLLECTION_NAME;
   }
 
   async process(contentId, chunkObject) {
-    const chunk = new Chunk(contentId, chunkObject);
-    const result = await this.mongoDB.insertOne(this.collectionName, chunk);
+    const chunkData = {
+      contentId,
+      index: chunkObject.index,
+      text: chunkObject.text,
+      tokenAmount: chunkObject.tokenAmount
+    };
 
-    return result ? chunk : null;
+    try {
+      // Save the chunk document using Mongoose
+      const chunk = new Chunk(chunkData);
+      const result = await chunk.save();
+
+      return result ? chunk : null;
+    } catch (error) {
+      console.error("Error storing chunk into MongoDB:", error);
+      return null;
+    }
   }
 }
 module.exports = StoreChunkIntoMongo;

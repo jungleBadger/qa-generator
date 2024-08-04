@@ -1,19 +1,29 @@
 "use strict";
 
 const Content = require("../models/Content");
-const DB_COLLECTION_NAME = "contents";
 
 class RegisterContent {
   constructor(mongoDB) {
-    this.mongoDB = mongoDB;
-    this.collectionName = DB_COLLECTION_NAME;
+    this.mongoDB = mongoDB; // Still keeping the MongoDB class for connection management
   }
 
-  async process() {
-    const content = new Content();
-    const result = await this.mongoDB.insertOne(this.collectionName, content);
+  async process(ownerId) {
+    console.log(ownerId);
+    // Create a new content document using the Mongoose model
+    const contentData = {
+      ownerId: ownerId // Set default or custom owner value if needed
+    };
 
-    return result ? content : null;
+    try {
+      // Save the content document using Mongoose
+      const content = new Content(contentData);
+      const result = await content.save();
+
+      return result ? content : null;
+    } catch (error) {
+      console.error("Error registering content into MongoDB:", error);
+      return null;
+    }
   }
 }
 
