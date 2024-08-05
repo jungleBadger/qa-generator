@@ -7,9 +7,10 @@ class StoreChunkIntoMongo {
     this.mongoDB = mongoDB;
   }
 
-  async process(contentId, chunkObject) {
+  async process(ownerId, contentId, chunkObject) {
     const chunkData = {
       contentId,
+      ownerId,
       index: chunkObject.index,
       text: chunkObject.text,
       tokenAmount: chunkObject.tokenAmount

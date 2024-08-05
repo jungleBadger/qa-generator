@@ -4,7 +4,8 @@ const RegisterContent = require("./RegisterContent");
 const SplitTextIntoChunks = require("./SplitTextIntoChunks");
 const StoreChunkIntoMongo = require("./StoreChunkIntoMongo");
 const GenerateQA = require("./generateQA");
-const storeQAItemsIntoMongo = require("./storeQAItemsIntoMongo");
+const StoreQAItemsIntoMongo = require("./storeQAItemsIntoMongo");
+const StoreQAMetadataItemIntoMongo = require("./StoreQAMetadataItemIntoMongo");
 
 class Orchestrator {
   constructor(logger, mongoDB, inference) {
@@ -12,7 +13,10 @@ class Orchestrator {
     this.registerContent = new RegisterContent(mongoDB);
     this.storeChunkIntoMongo = new StoreChunkIntoMongo(mongoDB);
     this.generateQA = new GenerateQA(inference);
-    this.storeQAItemsIntoMongo = new storeQAItemsIntoMongo(mongoDB);
+    this.storeQAItemsIntoMongo = new StoreQAItemsIntoMongo(mongoDB);
+    this.storeQAMetadataItemIntoMongo = new StoreQAMetadataItemIntoMongo(
+      mongoDB
+    );
 
     this.contentObject = "";
   }
@@ -48,15 +52,38 @@ class Orchestrator {
               try {
                 const [storedChunk, qaItems] = await Promise.all([
                   this.storeChunkIntoMongo.process(
+                    documentOwner,
                     this.contentObject._id,
                     chunkObject
                   ),
                   this.generateQA.process(chunkObject)
                 ]);
 
-                await this.storeQAItemsIntoMongo.process(qaItems);
+                const [storedQAItems, storedQAMetadataItem] = await Promise.all(
+                  [
+                    this.storeQAItemsIntoMongo.process(
+                      documentOwner,
+                      this.contentObject._id,
+                      storedChunk._id,
+                      storedChunk.index,
+                      qaItems.content
+                    ),
+                    this.storeQAMetadataItemIntoMongo.process(
+                      documentOwner,
+                      this.contentObject._id,
+                      storedChunk._id,
+                      storedChunk.index,
+                      qaItems.prompt,
+                      qaItems.usage
+                    )
+                  ]
+                );
 
-                return { chunk: storedChunk, qaItems };
+                return {
+                  chunk: storedChunk,
+                  qaItems: storedQAItems,
+                  metadata: storedQAMetadataItem
+                };
               } catch (e) {
                 throw e;
               }

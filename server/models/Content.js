@@ -8,7 +8,7 @@ const DB_COLLECTION_NAME = "contents";
 // Define a Mongoose schema for the Content model
 const contentSchema = new mongoose.Schema({
   _id: { type: String, default: uuidv4 }, // Use UUID for _id
-  ownerId: { type: String, default: "" }, // Default owner as an empty string
+  ownerId: { type: String, required: true },
   timestamp: { type: Date, default: Date.now } // Automatically set timestamp
 });
 

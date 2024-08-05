@@ -16,15 +16,19 @@ class Inference {
     });
   }
 
-  async execute(messagesArray = []) {
-    const completion = await this.client.chat.completions.create({
+  async execute(messagesArray = [], messageOptions = {}) {
+    return this.client.chat.completions.create({
       messages: messagesArray,
-      model: this.inferenceModel
+      model: this.inferenceModel,
+      ...messageOptions
     });
+  }
 
-    console.log(completion.choices[0]);
-
-    return completion;
+  createPromptMessage(prompt) {
+    return {
+      role: "user",
+      content: prompt
+    };
   }
 }
 
