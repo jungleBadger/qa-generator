@@ -2,15 +2,13 @@
 
 const mainAuthRoutes = require("./auth/main");
 const mainStaticRoutes = require("./static/main");
-const mainAPIRoutes = require("./api/main");
+const contentAPIRoutes = require("./api/content/index");
 
 module.exports = {
-  init: async function (app, Orchestrator, passport, mongoDB, inference) {
-    const orchestrator = new Orchestrator(app.log, mongoDB, inference);
-
+  init: async function (app, orchestrator, passport) {
     mainAuthRoutes.init(app, passport);
     mainStaticRoutes.init(app, passport);
-    mainAPIRoutes.init(app, passport, orchestrator);
+    contentAPIRoutes.init(app, passport, orchestrator);
 
     app.log.info("Routes initialized");
   }
