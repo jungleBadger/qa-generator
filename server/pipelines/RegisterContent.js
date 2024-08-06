@@ -1,6 +1,6 @@
 "use strict";
 
-const Content = require("../models/Content");
+const contentHelper = require("../helpers/content");
 
 class RegisterContent {
   constructor(mongoDB) {
@@ -8,7 +8,6 @@ class RegisterContent {
   }
 
   async process(ownerId) {
-    console.log(ownerId);
     // Create a new content document using the Mongoose model
     const contentData = {
       ownerId: ownerId // Set default or custom owner value if needed
@@ -16,10 +15,10 @@ class RegisterContent {
 
     try {
       // Save the content document using Mongoose
-      const content = new Content(contentData);
-      const result = await content.save();
 
-      return result ? content : null;
+      const result = await contentHelper.createContent(contentData);
+
+      return result ? result : null;
     } catch (error) {
       console.error("Error registering content into MongoDB:", error);
       return null;
