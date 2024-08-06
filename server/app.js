@@ -6,6 +6,7 @@ const MongoStore = require("connect-mongo");
 
 const fastifyCookie = require("@fastify/cookie");
 const fastifySession = require("@fastify/session");
+const fastifyMultipart = require("@fastify/multipart");
 
 const openaiConfigs = require("./configs/openai");
 const mongodbConfigs = require("./configs/mongodb");
@@ -33,7 +34,8 @@ async function createApp(logger, Orchestrator, passport, mongoDB, inference) {
       }
     }),
     app.register(passport.handler.initialize()),
-    app.register(passport.handler.secureSession())
+    app.register(passport.handler.secureSession()),
+    app.register(fastifyMultipart)
   ]);
 
   await Promise.all([
@@ -41,7 +43,11 @@ async function createApp(logger, Orchestrator, passport, mongoDB, inference) {
     inference.connect(openaiConfigs.apiKey)
   ]);
 
-  await routes.init(app, Orchestrator, passport, mongoDB, inference);
+  await routes.init(
+      app,
+      new Orchestrator(logger, mongoDB, inference),
+      passport
+  );
 
   return app;
 }
